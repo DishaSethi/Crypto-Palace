@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Navbar.css'
 import logo from '../../assets/logo.png';
 import arrow_icon from '../../assets/arrow_icon.png';
@@ -8,7 +8,16 @@ import { CoinContext } from '../../context/CoinContext';
 
 const Navbar = () => {
 const {setCurrency}=useContext(CoinContext);
+const [isMenuOpen,setIsMenuOpen]=useState(false);
+const [activeTab, setActiveTab]=useState('home');
 
+const toggleMenu=()=>{
+  setIsMenuOpen(!isMenuOpen);
+};
+
+const handleTabClick=(tab)=>{
+  setActiveTab(tab);
+}
 
 const currencyHandler=(event)=>{
     switch(event.target.value){
@@ -33,22 +42,24 @@ const currencyHandler=(event)=>{
 }
   return (
     <div className='navbar'>
-      <Link to={'/'}>
+  
+      <Link to={'/'} onClick={() => handleTabClick('home')}>
         <img src={logo} alt="" className='logo'  />
       </Link>
-      <ul>
-        <Link to={'/'}>
-         <li>Home</li>
+   
+
+   
+      
+
+
+      <ul >
+        <Link to={'/'} onClick={() => handleTabClick('home')}>
+         <li className={activeTab === 'home' ? 'active' : ''}>Home</li>
         </Link>
        
-       <Link to={'/features'}>
-        <li>Features</li>
-       </Link>
-       <Link to={'/pricing'}>
-       <li>Pricing</li>
-       </Link> 
-      <Link to={'/blog'}>
-       <li>Blog</li>
+       
+      <Link to={'/news'} onClick={() => handleTabClick('news')}>
+       <li className={activeTab === 'news' ? 'active' : ''}>News</li>
       </Link> 
       </ul>
       <div className="nav-right">
@@ -59,7 +70,22 @@ const currencyHandler=(event)=>{
          
 
         </select>
-        <button>Sign Up <img src={arrow_icon} alt="" /></button>
+        {/* <button>Sign Up <img src={arrow_icon} alt="" /></button> */}
+      </div>
+
+      <button className='hamburger' onClick={toggleMenu}>
+        <span className="line"></span>
+        <span className="line"></span>
+        <span className="line"></span>
+      </button>
+      <div className={`nav-links ${isMenuOpen ?'open':''}`}>
+      <Link to={'/'} onClick={() => handleTabClick('home')}>
+      <li className={activeTab === 'home' ? 'active' : ''}>Home</li>
+                </Link>
+              
+                <Link to={'/news'} onClick={() => handleTabClick('news')}>
+                <li className={activeTab === 'news' ? 'active' : ''}>News</li>
+                </Link>
       </div>
     </div>
   );
