@@ -6,6 +6,27 @@ import { CoinContext } from '../../context/CoinContext';
 const Home = () => {
 const {allCoin,currency}=useContext(CoinContext);
 const [displayCoin,setDisplayCoin]=useState([]);
+const [input,setInput]=useState('');
+
+const inputHandler=(event)=>{
+
+    setInput(event.target.value);
+    if(event.target.value===""){
+        setDisplayCoin(allCoin);
+    }
+}
+
+
+const searchHandler=async(event)=>{
+    event.preventDefault();
+
+    const coins= await allCoin.filter((item)=>{
+     return item.name.toLowerCase().includes(input.toLowerCase())
+    })
+    // bitcoin
+    // bit
+    setDisplayCoin(coins);
+}
 
 useEffect(()=>{
     setDisplayCoin(allCoin);
@@ -19,8 +40,17 @@ useEffect(()=>{
         Welcome to the world's larget Cryptocurrency Marketplace.
         Sign up to expore more.
         </p>
-        <form action="">
-            <input type="text" placeholder='Search crypto..'/>
+        <form onSubmit={searchHandler}>
+            <input onChange={inputHandler}
+            list='coinlist'
+            type="text"  value={input} placeholder='Search crypto..' required/>
+
+            <datalist id='coinlist'>
+                {allCoin.map((item,index)=>( <option  key={index} value={item.name}/>))}
+            </datalist>
+
+
+
             <button type='submit'>Search</button>
         </form>
         </div>
