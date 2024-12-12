@@ -11,6 +11,8 @@ const [coinData,setCoindata]=useState();
 const [ historicalData,setHistoricalData]=useState();
 const {currency}=useContext(CoinContext);
 
+
+
 const fetchCoinData=async()=>{
 
   const options = {
@@ -18,7 +20,7 @@ const fetchCoinData=async()=>{
     headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-18iSy9kSxpte6fzEtBstWk4w'}
   };
   
-  fetch(`/api/coingecko/api/v3/coins/${coinId}`, options)
+  fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`, options)
     .then(res => res.json())
     .then(res => setCoindata(res))
     .catch(err => console.error(err));
@@ -31,7 +33,7 @@ const fetchHistoricalData=async()=>{
     headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-18iSy9kSxpte6fzEtBstWk4w'}
   };
   
-  fetch(`/api/coingecko/api/v3/coins/${coinId}/market_chart?vs_currency=${currency.name}&days=10`, options)
+  fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${currency.name}&days=10`, options)
     .then(res => res.json())
     .then(res => setHistoricalData(res))
     .catch(err => console.error(err));
