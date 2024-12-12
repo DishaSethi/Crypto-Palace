@@ -15,7 +15,7 @@ const News = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `/api/news/v2/everything?q=cryptocurrency&apiKey=0b7f2e7d1fcb451e93bc762e4ee91b52`
+          `https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=0b7f2e7d1fcb451e93bc762e4ee91b52`
         );
 
         if (!response.ok) {
