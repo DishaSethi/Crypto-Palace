@@ -40,7 +40,7 @@ useEffect(()=>{
       <h1>Largest <br/>Crypto Marketplace</h1>
       <p>
         Welcome to the world's larget Cryptocurrency Marketplace.
-        Sign up to expore more.
+       
         </p>
         <form onSubmit={searchHandler}>
             <input onChange={inputHandler}
