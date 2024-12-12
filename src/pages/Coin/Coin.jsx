@@ -10,6 +10,9 @@ const {coinId}=useParams();
 const [coinData,setCoindata]=useState();
 const [ historicalData,setHistoricalData]=useState();
 const {currency}=useContext(CoinContext);
+// const API_URL = import.meta.env.PROD
+//   ? 'https://api.coingecko.com/api/v3'
+//   : '/api/coingecko';
 
 
 

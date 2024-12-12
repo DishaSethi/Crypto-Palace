@@ -9,6 +9,10 @@ const CoinContextProvider=(props)=>{
         name:"usd",
         symbol:"$"
     });
+    const API_URL = import.meta.env.PROD
+  ? 'https://api.coingecko.com/api/v3'
+  : '/api/coingecko';
+
 
     const fetchAllCoin=async()=>{
 
@@ -17,7 +21,7 @@ const CoinContextProvider=(props)=>{
             headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-18iSy9kSxpte6fzEtBstWk4w'}
           };
           
-          fetch(`/api/coingecko/api/v3/coins/markets?vs_currency=${currency.name}`, options)
+          fetch(`${API_URL}/api/v3/coins/markets?vs_currency=${currency.name}`, options)
             .then(res => res.json())
             .then(res => setAllCoin(res))
             .catch(err => console.error(err));
