@@ -4,7 +4,7 @@
 
 <h2>🚀 Demo</h2>
 
-[https://crypto-palace.onrender.com/](https://crypto-palace-six.vercel.app/)
+[https://crypto-palace-six.vercel.app/](https://crypto-palace-six.vercel.app/)
 
   
   
