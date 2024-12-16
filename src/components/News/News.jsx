@@ -7,7 +7,7 @@ const News = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [startIndex, setStartIndex] = useState(0);
-  const itemsPerPage = 3;
+  const itemsPerPage = 4;
   const pagesToShow = 3;
 
   useEffect(() => {
