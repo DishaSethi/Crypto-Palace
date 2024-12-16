@@ -7,7 +7,7 @@ const News = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [startIndex, setStartIndex] = useState(0);
-  const itemsPerPage = 6;
+  const itemsPerPage = 3;
   const pagesToShow = 3;
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const News = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=0b7f2e7d1fcb451e93bc762e4ee91b52`
+          `https://gnews.io/api/v4/search?q=cryptocurrency&token=f77fd194bbde0e394b1282536da7b4f9`
         );
 
         if (!response.ok) {
@@ -85,7 +85,7 @@ const News = () => {
       <div className="news-list">
         {currentItems.map((article, index) => (
           <div className="news-card" key={index}>
-            <img src={article.urlToImage} alt={article.title} />
+            <img src={article.image} alt={article.title} />
             <div className="news-content">
               <h3>{article.title}</h3>
               <p>{article.description}</p>
